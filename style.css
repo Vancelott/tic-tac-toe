@@ -1,0 +1,26 @@
+html {
+    height: 100%;
+    background-color: rgb(65, 65, 65);
+}
+
+h1 {
+    text-align: center;
+}
+
+div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    margin: 10rem;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 160px 160px 160px;
+    grid-template-rows: 160px 160px 160px;
+}
+
+.btn {
+    border-style: solid;
+}
