@@ -12,15 +12,25 @@ div {
     flex-wrap: wrap;
     justify-content: center;
     align-content: center;
-    margin: 10rem;
+    /* margin: 10rem; */
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 160px 160px 160px;
-    grid-template-rows: 160px 160px 160px;
+    grid-template-columns: 12rem 12rem 12rem;
+    grid-template-rows: 12rem 12rem 12rem;
 }
 
 .btn {
     border-style: solid;
+    background-color: rgb(139, 139, 139);
+}
+
+.btnX{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    position: absolute;
+    margin: auto;
+    padding: 30px;
 }
