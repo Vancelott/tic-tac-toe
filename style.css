@@ -1,24 +1,58 @@
 html {
     height: 100%;
-    background-color: rgb(65, 65, 65);
+    background-color: #5C80BC;
+}
+
+body {
+    min-height: 100%;
 }
 
 h1 {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 1.6em;
+    background: #FBCA1F;
     text-align: center;
+    padding: 0.3em 0.5em;
+    font-weight: 900;
+    border: 3px solid black;
+    border-radius: 0.4em;
+    box-shadow: 0.1em 0.1em;
 }
 
-div {
+.container {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-    /* margin: 10rem; */
+    align-items: center;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: 12rem 12rem 12rem;
-    grid-template-rows: 12rem 12rem 12rem;
+    position: relative;
+    grid-template-columns: repeat(3, 12rem);
+    grid-template-rows: repeat(3, 12rem);
+    border-radius: 25px;
+    margin: auto;
+    
+}
+
+.grid button {
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 5em;
+    font-weight: bold;
+    color: rgb(34, 34, 34);
+    border-radius: 5px;
+    cursor: pointer;
+}
+  
+.grid button:hover {
+    background: #e0e0e0;
+    -webkit-box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #ffffff;
+    box-shadow: inset 10px 10px 30px #bebebe, inset -10px -10px 30px #ffffff;
+}
+
+.grid button:focus {
+    outline-color: #074F57;
 }
 
 .btn {
@@ -26,16 +60,45 @@ div {
     background-color: rgb(139, 139, 139);
 }
 
-.btnX{
+.input {
+    margin-left: 855px;
     display: flex;
-    justify-content: center;
-    align-content: center;
-    position: absolute;
-    margin: auto;
-    padding: 30px;
+    align-items: center;
+    justify-items: center;
+    font-family: monospace;
+    max-width: 190px;
+    outline: none;
+    border: 1px solid #dadada;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f3f7fe;
+    transition: .3s;
+    color: #3b82f6;
+}
+  
+.input:focus {
+    border: 1px solid #3b82f6;
+    box-shadow: 0 0 0 4px #3b83f65f
 }
 
-.btnO{
-    margin: 90px;
-    padding: 30px;
+.btn {
+    margin-left: 700px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Helvetica, Arial, sans-serif;
+    background-color: #f3f7fe;
+    color: #3b82f6;
+    border: none;
+    border-radius: 8px;
+    width: 100px;
+    height: 45px;
+    transition: .3s;
+    cursor: pointer;
+  }
+  
+.btn:hover {
+    background-color: #3b82f6;
+    box-shadow: 0 0 0 5px #3b83f65f;
+    color: #fff;
 }

@@ -1,42 +1,60 @@
 const board = [];
 
+const container = document.createElement("div");
+container.classList = "container"
+document.querySelector("body").appendChild(container);
+
 const div = document.createElement("div")
-div.setAttribute("class", "grid")
-document.querySelector("body").appendChild(div);
+  div.classList = "grid"
+  document.querySelector("body").appendChild(div);
+  container.appendChild(div)
 
-const btnX = document.createElement("button")
-btnX.setAttribute("class", "btnX");
-btnX.textContent= "x"
-document.querySelector("body").appendChild(btnX);
+function playerName(placeholder, clickListener) {
+  const input = document.createElement("input");
+  input.setAttribute("placeholder", placeholder);
+  input.classList = "input";
+  input.appendChild(submitBtn)
+  document.querySelector("body").appendChild(input);
+  input.parentNode.insertBefore(submitBtn, input)
+    submitBtn.addEventListener("click", () => {
+      const name = input.value;
+      clickListener(name);
+      input.value = "";
+    });
+};
 
-const btnO = document.createElement("button")
-btnO.setAttribute("class", "btnO");
-btnO.textContent= "O"
-document.querySelector("body").appendChild(btnO);
+const submitBtn = document.createElement("button");
+submitBtn.textContent = "Submit";
+submitBtn.classList = "btn";
+
+const restartBtn = document.createElement("button");
+restartBtn.textContent = "Restart";
+restartBtn.classList = "btn";
+document.querySelector("body").appendChild(restartBtn);
+
+restartBtn.addEventListener("click", function(){
+  board[0].textContent = ""; board[1].textContent = ""; board[2].textContent = "";
+  board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
+  board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = ""; 
+});
+
+let playerNames = { X: '', O: '' };
 
 let y = 0
 
-// const twoPlayers = document.createElement("button")
-// twoPlayers.setAttribute("class", "btn2");
-// twoPlayers.textContent= "Two Players"
-// document.querySelector("body").appendChild(twoPlayers);
-
-function buttonX() {
-  
-}
-
 function twoPlayer() {
-
-  const twoPlayers = document.createElement("button")
-  twoPlayers.setAttribute("class", "btn2");
-  twoPlayers.textContent= "Two Players"
-  document.querySelector("body").appendChild(twoPlayers);
+  const playerX = playerName("Player X name ", (nameX) => {
+    playerNames.X = nameX;
+  }, submitBtn);
+  const playerO = playerName("Player O name", (nameO) => {
+    playerNames.O = nameO;
+  }, submitBtn);
   for (let i = 0; i < 9; i++) {
     function changeTurn(){
       if(nextTurn == 'X'){
-           nextTurn = 'O';
+        nextTurn = 'O';
       } else {
-           nextTurn = 'X';
+        nextTurn = 'X';
       }
     }
     var nextTurn = 'X'
@@ -49,8 +67,9 @@ function twoPlayer() {
       if (board) {
            if(this.textContent === ""){ 
             this.textContent = nextTurn;
-                changeTurn();
-          } if (board[0].textContent === "X" && board[1].textContent === "X" && board[2].textContent === "X" || 
+                changeTurn();} 
+                setTimeout(function() {
+            if (board[0].textContent === "X" && board[1].textContent === "X" && board[2].textContent === "X" || 
             board[3].textContent === "X" && board[4].textContent === "X" && board[5].textContent === "X" ||
             board[6].textContent === "X" && board[7].textContent === "X" && board[8].textContent === "X" ||
             board[0].textContent === "X" && board[4].textContent === "X" && board[8].textContent === "X" ||
@@ -58,10 +77,15 @@ function twoPlayer() {
             board[0].textContent === "X" && board[3].textContent === "X" && board[6].textContent === "X" ||
             board[1].textContent === "X" && board[4].textContent === "X" && board[7].textContent === "X" ||
             board[2].textContent === "X" && board[5].textContent === "X" && board[8].textContent === "X") {
-              alert("Player X wins");
-              board[0].textContent = ""; board[1].textContent = ""; board[2].textContent = "";
-              board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
-              board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = "";
+                if (playerNames.X.length > 0) {
+                  alert("Player " + playerNames.X + " won");
+                  } else {
+                    alert("Player X wins")
+                  }
+                board[0].textContent = ""; board[1].textContent = ""; board[2].textContent = "";
+                board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
+                board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = ""; }
+                }, 100);
             } if (board[0].textContent === "O" && board[1].textContent === "O" && board[2].textContent === "O" ||
             board[3].textContent === "O" && board[4].textContent === "O" && board[5].textContent === "O" ||
             board[6].textContent === "O" && board[7].textContent === "O" && board[8].textContent === "O" ||
@@ -70,123 +94,53 @@ function twoPlayer() {
             board[0].textContent === "O" && board[3].textContent === "O" && board[6].textContent === "O" ||
             board[1].textContent === "O" && board[4].textContent === "O" && board[7].textContent === "O" ||
             board[2].textContent === "O" && board[5].textContent === "O" && board[8].textContent === "O") {
-              alert("Player O wins")
+              if (playerNames.O.length > 0) {
+                alert("Player " + playerNames.O + " wins")
+                } else {
+                  alert("Player O wins")
+                }
+                setTimeout(function() {
               board[0].textContent = ""; board[1].textContent = ""; board[2].textContent = "";
               board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
               board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = "";
-            } else if (board[0].textContent !== "" && board[1].textContent !== "" && board[2].textContent !== "" &&
-                     board[3].textContent !== "" && board[4].textContent !== "" && board[5].textContent !== "" &&
-                     board[6].textContent !== "" && board[7].textContent !== "" && board[8].textContent !== "") {
-                alert("Tie")
-                board[0].textContent = ""; board[1].textContent = ""; board[2].textContent = "";
-                board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
-                board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = "";
+              }, 100);
+                } else if (board[0].textContent !== "" && board[1].textContent !== "" && board[2].textContent !== "" &&
+                          board[3].textContent !== "" && board[4].textContent !== "" && board[5].textContent !== "" &&
+                          board[6].textContent !== "" && board[7].textContent !== "" && board[8].textContent !== "") {
+                      alert("Tie")
+                      board[0].textContent = ""; board[1].textContent = ""; board[2].textContent = "";
+                      board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
+                      board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = "";
                      }
-    }});
+    });
     y++;
   }
 }
 
 twoPlayer();
 
-// function createBoard() {
-//     // function markBox() {
-//     //   button.textContent = "X"
-//     // }
-//     // const btnX = document.createElement("button");
-//     // document.querySelector("body").appendChild(btnX);
-//     // btnX.addEventListener("click", markBox)
-//     for (let i = 0; i < 9; i++) {
-//       const button = document.createElement("button");
-//       button.setAttribute("class", "btn" + y);
-//     //button.addEventListener("click", clickListener);
-//       document.querySelector("body").appendChild(button);
-//       div.appendChild(button);
-//       board.push(button);
-//       btnX.addEventListener("click", function() {
-//       button.addEventListener("click", function() {
-//         // tuka ako cykne na buton x neka textcontent e x, ako cykne na buton o da e textcontent o
-//           button.textContent = "X"
-            // if (board[0].textContent === "X" && board[1].textContent === "X" && board[2].textContent === "X" ||
-            // board[3].textContent === "X" && board[4].textContent === "X" && board[5].textContent === "X" ||
-            // board[6].textContent === "X" && board[7].textContent === "X" && board[8].textContent === "X" ||
-            // board[0].textContent === "X" && board[4].textContent === "X" && board[8].textContent === "X" ||
-            // board[2].textContent === "X" && board[4].textContent === "X" && board[6].textContent === "X" ||
-            // board[0].textContent === "X" && board[3].textContent === "X" && board[6].textContent === "X" ||
-            // board[1].textContent === "X" && board[4].textContent === "X" && board[7].textContent === "X" ||
-            // board[2].textContent === "X" && board[5].textContent === "X" && board[8].textContent === "X") {
-//               alert("You won")
-//           } else {
-//             // alert("Tie")
-//         }})
-//       })
-//       btnO.addEventListener("click", function() {
-//         button.addEventListener("click", function() {
-//           button.textContent = "O"
-            // if (board[0].textContent === "O" && board[1].textContent === "O" && board[2].textContent === "O" ||
-            // board[3].textContent === "O" && board[4].textContent === "O" && board[5].textContent === "O" ||
-            // board[6].textContent === "O" && board[7].textContent === "O" && board[8].textContent === "O" ||
-            // board[0].textContent === "O" && board[4].textContent === "O" && board[8].textContent === "O" ||
-            // board[2].textContent === "O" && board[4].textContent === "O" && board[6].textContent === "O" ||
-            // board[0].textContent === "O" && board[3].textContent === "O" && board[6].textContent === "O" ||
-            // board[1].textContent === "O" && board[4].textContent === "O" && board[7].textContent === "O" ||
-            // board[2].textContent === "O" && board[5].textContent === "O" && board[8].textContent === "O") {
-//               alert("You won")
-//           } else {
-//             // alert("tie")
-//           }})
-//         })
-//       y++;
-//       };
-// }
+// Attempt at keeping track of score, will work on it at a later stage
 
-// window.addEventListener("load", createBoard);
+//   let j = "0"
 
-// function Win() {
+//   const winnerO = document.createElement("p");
+//   document.querySelector("body").appendChild(winnerO);
+//   winnerO.textContent = j;
 
-// }
+//   variant 1
 
-// Button X to select the X as your preferred choice
+//   if (j === "0") {
+//     winnerO.textContent = "1";
+//     j = "1";
+//   } else {
+//     winnerO.textContent = j;
+//     j = parseInt(j) + 1
 
-// function symbolChoice() {
-//   const btnX = document.createElement("button");
-//   document.querySelector("body").appendChild(btnX);
-//   btnX
-// };
+//   variant 2 
 
-// Math.random - bot player
-
-// function createBox(className, clickListener) {
-//     const button = document.createElement("button");
-//     button.classList = className;
-//     button.addEventListener("click", clickListener);
-//     let j = 0
-//     for (let j = 0; j < 9; j++)
-//     button.setAttribute("class", [j])
-//     document.querySelector("body").appendChild(button);
-//     return button;
-// }
-
-// const createBox = []
-
-// createBox.forEach(num=>{
-//     for (let i = 0; i < 9; i++)  {
-//         const button = document.createElement("button");
-//         button.setAttribute("class", "x")
-//         document.querySelector(board).appendChild(button);
-//         button.addEventListener("click", clickListener);
-// }});
-
-// function createBox(className, clickListener) {
-//     const button = document.createElement("button");
-//     button.classList = className;
-//     button.addEventListener("click", clickListener);
-//     document.querySelector("body").appendChild(button);
-//     return button;
-// }
-
-// const createBoard = createBox("box", () => {
-//     for (let i = 0; i < 0; i++) {
-//         createBoard.appendChild(createBox);
-//     }
-
+//   if (j === "0") {
+//     winnerO.textContent = "1";
+//     j = "1";
+//   } else {
+//     winnerO.textContent = j;
+//     j++;
