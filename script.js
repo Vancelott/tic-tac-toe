@@ -10,26 +10,35 @@ const div = document.createElement("div")
   container.appendChild(div)
 
 function playerName(placeholder, clickListener) {
+  const wrap = document.createElement("div")
+  wrap.classList = "wrap"
   const input = document.createElement("input");
   input.setAttribute("placeholder", placeholder);
   input.classList = "input";
   input.appendChild(submitBtn)
   document.querySelector("body").appendChild(input);
-  input.parentNode.insertBefore(submitBtn, input)
     submitBtn.addEventListener("click", () => {
       const name = input.value;
       clickListener(name);
       input.value = "";
     });
+  wrap.appendChild(input);
+  wrap.appendChild(submitBtn);
+  document.querySelector("body").appendChild(wrap);
+  const playerDiv = document.createElement("div");
+  playerDiv.classList = "player";
+  playerDiv.appendChild(wrap);
+  container.appendChild(playerDiv)
+  return playerDiv;
 };
 
 const submitBtn = document.createElement("button");
 submitBtn.textContent = "Submit";
-submitBtn.classList = "btn";
+submitBtn.classList = "btn submit";
 
 const restartBtn = document.createElement("button");
 restartBtn.textContent = "Restart";
-restartBtn.classList = "btn";
+restartBtn.classList = "btn restart players";
 document.querySelector("body").appendChild(restartBtn);
 
 restartBtn.addEventListener("click", function(){
@@ -37,6 +46,10 @@ restartBtn.addEventListener("click", function(){
   board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
   board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = ""; 
 });
+
+const playersDiv = document.createElement("div");
+playersDiv.classList = "players";
+container.appendChild(playersDiv)
 
 let playerNames = { X: '', O: '' };
 
@@ -49,6 +62,8 @@ function twoPlayer() {
   const playerO = playerName("Player O name", (nameO) => {
     playerNames.O = nameO;
   }, submitBtn);
+      playersDiv.appendChild(playerX);
+      playersDiv.appendChild(playerO);
   for (let i = 0; i < 9; i++) {
     function changeTurn(){
       if(nextTurn == 'X'){
@@ -59,7 +74,7 @@ function twoPlayer() {
     }
     var nextTurn = 'X'
     const button = document.createElement("button");
-    button.setAttribute("class", "btn" + y);
+    button.setAttribute("class", "grid" + y);
     document.querySelector("body").appendChild(button);
     div.appendChild(button);
     board.push(button);
@@ -107,10 +122,12 @@ function twoPlayer() {
                 } else if (board[0].textContent !== "" && board[1].textContent !== "" && board[2].textContent !== "" &&
                           board[3].textContent !== "" && board[4].textContent !== "" && board[5].textContent !== "" &&
                           board[6].textContent !== "" && board[7].textContent !== "" && board[8].textContent !== "") {
+                            setTimeout(function() {
                       alert("Tie")
                       board[0].textContent = ""; board[1].textContent = ""; board[2].textContent = "";
                       board[3].textContent = ""; board[4].textContent = ""; board[5].textContent = "";
                       board[6].textContent = ""; board[7].textContent = ""; board[8].textContent = "";
+                    }, 100);
                      }
     });
     y++;

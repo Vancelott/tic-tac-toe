@@ -3,8 +3,14 @@ html {
     background-color: #5C80BC;
 }
 
-body {
+body .players {
     min-height: 100%;
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    flex-direction: column;
+    align-items: center;
+    
 }
 
 h1 {
@@ -12,27 +18,20 @@ h1 {
     font-size: 1.6em;
     background: #FBCA1F;
     text-align: center;
-    padding: 0.3em 0.5em;
+    padding: 0.3em 3em;
     font-weight: 900;
     border: 3px solid black;
     border-radius: 0.4em;
     box-shadow: 0.1em 0.1em;
 }
 
-.container {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-}
-
 .grid {
     display: grid;
-    position: relative;
     grid-template-columns: repeat(3, 12rem);
     grid-template-rows: repeat(3, 12rem);
     border-radius: 25px;
-    margin: auto;
+    justify-content: center;
+    margin: 0;
     
 }
 
@@ -55,13 +54,13 @@ h1 {
     outline-color: #074F57;
 }
 
-.btn {
-    border-style: solid;
-    background-color: rgb(139, 139, 139);
+.wrap{
+    display: flex;
+    align-items: center;
+    justify-items: center;
 }
 
 .input {
-    margin-left: 855px;
     display: flex;
     align-items: center;
     justify-items: center;
@@ -81,11 +80,41 @@ h1 {
     box-shadow: 0 0 0 4px #3b83f65f
 }
 
+.restart {
+    margin: auto;
+    position: relative;
+    margin-top: 100px;
+    left: 44.5%;
+    transform: translateX(-50%);
+    color: #ff1433;
+}
+
+@media (max-width: 768px) {
+    .restart {
+        display: flex;
+        align-items: center;
+        justify-items: center;
+        position: relative;
+        margin-top: 100px;
+        top: -20%;
+        left: 35%;
+        transform: translateX(-50%);
+        color: #f63b3b;
+    }
+}
+
+.players {
+    margin-top: 15px;
+    margin-left: 7.5em;
+}
+
+.wrap .submit{
+    margin-left: 20px;
+    margin-bottom: 60px;
+}
+
+
 .btn {
-    margin-left: 700px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     font-family: Helvetica, Arial, sans-serif;
     background-color: #f3f7fe;
     color: #3b82f6;
@@ -95,8 +124,12 @@ h1 {
     height: 45px;
     transition: .3s;
     cursor: pointer;
-  }
-  
+}
+
+.restart{
+    color: #1d498f;
+}
+
 .btn:hover {
     background-color: #3b82f6;
     box-shadow: 0 0 0 5px #3b83f65f;
